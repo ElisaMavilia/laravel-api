@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*'],
+    'allowed_origins' => [env ('APP_FRONTEND_URL', 'http//default.it')], //asterisco ['*'] significa tutte le origini: tutti possono accedere all'api secondo le CORS policies
 
     'allowed_origins_patterns' => [],
 
