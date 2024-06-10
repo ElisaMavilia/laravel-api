@@ -19,13 +19,13 @@ class ProjectController extends Controller
         ]);
     }
 
-    public function Show($slug)
+    public function Show($id)
     {
-        $project = Project::where('slug', $slug)->first();
+        $project = Project::where('id', $id)->first()->with('technologies', 'category')->get();
+        
         return response()->json([
             'success' => true,
             'results' => $project,
-            dd($project)
         ]);
     }
 }
