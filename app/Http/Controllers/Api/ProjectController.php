@@ -14,7 +14,8 @@ class ProjectController extends Controller
         $projects = Project::all();
         return response()->json([
             'success' => true,
-            'results' => $projects
+            'results' => $projects,
+            //dd($projects)
         ]);
     }
 
@@ -23,7 +24,8 @@ class ProjectController extends Controller
         $project = Project::where('slug', $slug)->first();
         return response()->json([
             'success' => true,
-            'results' => $project
+            'results' => $project,
+            dd($project)
         ]);
     }
 }
