@@ -21,7 +21,7 @@ class ProjectController extends Controller
 
     public function Show($id)
     {
-        $project = Project::where('id', $id)->first()->with('technologies', 'category')->get();
+        $project = Project::where('id', $id)->with('technologies', 'category')->first();
         
         return response()->json([
             'success' => true,
