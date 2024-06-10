@@ -19,13 +19,21 @@ class ProjectController extends Controller
         ]);
     }
 
-    public function Show($id)
+    public function Show($slug)
     {
-        $project = Project::where('id', $id)->with('technologies', 'category')->first();
+        $project = Project::where('slug', $slug)->with('technologies', 'category')->first();
+        if ($project){ //inserire controllo per verificare che il project esista
+            return response()->json([
+                'success' => true,
+                'results' => $project,
+            ]);
+        } else {
+            return response()->json([
+                'success' => false, //se il project non esiste restituisce un errore
+                'results' => 'Project not found',
+            ]);
+        }
         
-        return response()->json([
-            'success' => true,
-            'results' => $project,
-        ]);
+        
     }
 }
