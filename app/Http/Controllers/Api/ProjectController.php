@@ -11,7 +11,7 @@ class ProjectController extends Controller
 
     public function index()
     {
-        $projects = Project::all();
+        $projects = Project::paginate(5); //quando si inserisce la paginazione i projects sono inseriti dentro la chiave "data". Senza la paginazione i dati si trovano direttamente dentro results
         return response()->json([
             'success' => true,
             'results' => $projects,
@@ -29,7 +29,7 @@ class ProjectController extends Controller
             ]);
         } else {
             return response()->json([
-                'success' => false, //se il project non esiste restituisce un errore
+                'success' => false, //se il project non esiste restituisce un errore e success = false
                 'results' => 'Project not found',
             ]);
         }
