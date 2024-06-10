@@ -21,7 +21,7 @@ class ProjectController extends Controller
 
     public function Show($slug)
     {
-        $project = Project::where('slug', $slug)->with('technologies', 'category')->first();
+        $project = Project::where('slug', $slug)->with('technologies', 'category')->first();//eager loading
         if ($project){ //inserire controllo per verificare che il project esista
             return response()->json([
                 'success' => true,
