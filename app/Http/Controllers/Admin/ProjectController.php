@@ -18,7 +18,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::paginate(5);
+        $projects = Project::paginate(4);
         //dd($projects);
         return view('admin.projects.index', compact('projects'));
     }
@@ -48,7 +48,7 @@ class ProjectController extends Controller
         $path = Storage::put('uploads', $form_data['image']);
         if ($request->hasFile('image')) {
             $name = $request->image->getClientOriginalName();
-            $path = Storage::putFileAs('post_images', $request->image, $name);
+            $path = Storage::putFileAs('project_images', $request->image, $name);
             $form_data['image'] = $path;
         }
         $newProject = Project::create($form_data);
