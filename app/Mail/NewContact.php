@@ -17,7 +17,7 @@ class NewContact extends Mailable /* oggetto Mailable, ovvero il messaggio email
      * Create a new message instance.
      */
 
-public $lead; /* variabile di istanza che memorizza tutti i dati del form, va definita come ublic in modo da potervi accedere direttamente dalla view */
+public $lead; /* variabile di istanza che memorizza tutti i dati del form, va definita come public in modo da potervi accedere direttamente dalla view */
     public function __construct($_lead) //le variabili private si mettono con underscore
     {
         $this->lead = $_lead; //attacca i dati del form all'oggetto di istanza di NewContact quando viene creato
@@ -39,7 +39,7 @@ public $lead; /* variabile di istanza che memorizza tutti i dati del form, va de
     public function content(): Content
     {
         return new Content(
-            view: 'mails.new-contact', //ritorna una view che va creata dentro la cartella emails
+            view: 'mails.new-contact', //ritorna una view (new-contact-blade.php) che va creata dentro la cartella mails delle views
         );
     }
 
