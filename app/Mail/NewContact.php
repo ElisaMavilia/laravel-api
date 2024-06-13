@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class NewContact extends Mailable /* oggetto Mailable, ovvero il messaggio email da inviare */
+class NewContact extends Mailable /* oggetto Mailable, ovvero il messaggio email da inviare, si possono creare diversi oggetti mailable per diverse categorie (es. commenti, messaggi, notifiche) */
 {
     use Queueable, SerializesModels;
 
@@ -18,16 +18,16 @@ class NewContact extends Mailable /* oggetto Mailable, ovvero il messaggio email
      */
 
 public $lead; /* variabile di istanza che memorizza tutti i dati del form, va definita come ublic in modo da potervi accedere direttamente dalla view */
-    public function __construct($_lead)
+    public function __construct($_lead) //le variabili private si mettono con underscore
     {
-        $this->lead = $_lead; 
+        $this->lead = $_lead; //attacca i dati del form all'oggetto di istanza di NewContact quando viene creato
     }
     /**
      * Get the message envelope.
      */
     public function envelope(): Envelope
     {
-        return new Envelope(
+        return new Envelope( //crea un oggetto envelope che contiene i dati necessari per creare l'email
             subject: 'New Contact',
             replyTo: $this->lead->address // email del mittente: il valore di ritorno è un oggetto della classe Envelope
         );
